@@ -1,0 +1,35 @@
+<h2>
+    weather-forecast
+</h2>
+<div class="container">
+    <button class="add-btn" (click)="openPopUp(true,'addWeatherForecast')">addWeatherForecast +</button>
+</div>
+<app-smart-card>
+    <div body>
+<div>
+            <app-smart-table [ifShowpagination]="[true,10]" [thArr]="thArrTableWeatherForecast" [ifSortDown]="ifSortDown"
+                [showDelete]="ifDelete" [showUpdate]="ifUpdate" [tableDataKeys]="weatherForecastsListKeys"
+                [tableData]="weatherForecastArr"  (EditData)="updateWeatherForecast($event)"
+                (DeleteData)="deleteWeatherForecast($event)" >
+            </app-smart-table>
+        </div>
+        <div *ngIf="!weatherForecastArr">
+            <br>
+            <h2>no weather forecast</h2>
+        </div>
+    </div>
+</app-smart-card>
+<div *ngIf="isPopUpOpen?.addWeatherForecast">
+    <app-add-weather-forecast (addData)="onWeatherForecastAdded($event)" ></app-add-weather-forecast>
+</div>
+
+ <div *ngIf="isPopUpOpen?.deleteWeatherForecast">
+    <app-delete-weather-forecast (deleteData)="onWeatherForecastDelete($event)" [weatherForecastId]="weatherForecastId" >
+    </app-delete-weather-forecast>
+</div>
+
+<!--<div *ngIf="isPopUpOpen?.updateWeatherForecast">
+    <app-update-weather-forecast (updateData)="onWeatherForecastUpdate($event)" [weatherForecastId]="weatherForecastId" 
+        [dataArr]="weatherForecastArr">
+    </app-update-weather-forecast>
+</div> -->

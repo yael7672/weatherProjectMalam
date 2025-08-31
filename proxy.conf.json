@@ -1,0 +1,11 @@
+{
+  "/api": {
+    "target": "https://webfocus.malam.com/weather",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/api": ""
+    }
+  }
+}

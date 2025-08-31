@@ -1,0 +1,38 @@
+<app-pop-up #upPopUP [ifX]="true">
+    <div body>
+        <h4 header class="mb-4">Create Weather Forecast
+        </h4>
+        <form (ngSubmit)="f.valid && createWeatherForecast(f)" #f="ngForm">
+            <div class="form-outline d-flex justify-content-center">
+                <input type="text" id="summary" name="Summary" class="form-control" placeholder="summary*"
+                    [ngClass]="{ 'is-invalid': f.submitted && summary.invalid }" #summary="ngModel" ngModel required />
+            </div>
+            <div *ngIf="f.submitted && summary.invalid" class="text-danger">
+                <span *ngIf="summary.errors">שדה זה חובה</span>
+            </div>
+
+            <div class="form-outline d-flex justify-content-center">
+                <input type="number" id="temperatureC" name="TemperatureC" class="form-control"
+                    placeholder="temperatureC*" [ngClass]="{ 'is-invalid': f.submitted && temperatureC.invalid }"
+                    #temperatureC="ngModel" ngModel required />
+            </div>
+            <div *ngIf="f.submitted && temperatureC.invalid" class="text-danger">
+                <span *ngIf="temperatureC.errors">שדה זה חובה</span>
+            </div>
+            <div class="form-outline d-flex justify-content-center">
+                <div class="InputWithText">
+                    <p class="date"> date</p>
+                    <input type="date" name="date" [(ngModel)]="date" #dateCtrl="ngModel" required
+                        [ngClass]="{ 'is-invalid': f.submitted && dateCtrl.invalid }" />
+                </div>
+                <div *ngIf="f.submitted && dateCtrl.invalid" class="text-danger">
+                    <span *ngIf="dateCtrl.errors?.['required']">שדה זה חובה</span>
+                </div>
+            </div>
+
+            <button type="submit" placement="top" ngbTooltip=" add Weather Forecast" class="btn"
+                [disabled]="isDisabled">
+                add Weather Forecast</button>
+        </form>
+    </div>
+</app-pop-up>
